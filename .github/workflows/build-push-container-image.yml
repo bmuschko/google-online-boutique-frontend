@@ -21,8 +21,8 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.ECR_ACCCESS_KEY }}
+          password: ${{ secrets.ECR_SECRET_ACCCESS_KEY }}
 
       - name: Determine last Git commit hash
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-7)" >> $GITHUB_ENV
@@ -33,4 +33,4 @@ jobs:
           push: true
           context: src
           platforms: linux/amd64,linux/arm64
-          tags: bmuschko/google-online-boutique-frontend:${{ env.GITHUB_SHA_SHORT }}
+          tags: 216423885123.dkr.ecr.us-west-2.amazonaws.com/online-boutique/frontend:${{ env.GITHUB_SHA_SHORT }}
